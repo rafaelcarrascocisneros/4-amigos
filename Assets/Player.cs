@@ -13,6 +13,13 @@ public class Player : MonoBehaviour
         hand.Add(card);
     }
 
+    // Adds GamePile to the player's hand
+    public void AddPileToHand(GamePile pile)
+    {
+        hand.AddRange(pile.Cards);
+        pile.ClearPile();
+    }
+
     // Removes a card from the player's hand
     public bool RemoveCardFromHand(Card card)
     {
@@ -26,6 +33,30 @@ public class Player : MonoBehaviour
         {
             Card cardToPlay = hand[cardIndex];
             hand.RemoveAt(cardIndex);
+            return cardToPlay;
+        }
+        return null; // Return null if the index is invalid
+    }
+
+    // Plays a card from the face-up cards
+    public Card PlayCardFromFaceUp(int cardIndex)
+    {
+        if (cardIndex >= 0 && cardIndex < faceUpCards.Count)
+        {
+            Card cardToPlay = faceUpCards[cardIndex];
+            faceUpCards.RemoveAt(cardIndex);
+            return cardToPlay;
+        }
+        return null; // Return null if the index is invalid
+    }
+
+    // Plays a card from the face-down cards
+    public Card PlayCardFromFaceDown(int cardIndex)
+    {
+        if (cardIndex >= 0 && cardIndex < faceDownCards.Count)
+        {
+            Card cardToPlay = faceDownCards[cardIndex];
+            faceDownCards.RemoveAt(cardIndex);
             return cardToPlay;
         }
         return null; // Return null if the index is invalid
