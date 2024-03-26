@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class GamePile
 {
     private List<Card> pile = new List<Card>();

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class DiscardPile
 {
     private List<Card> discardedCards = new List<Card>();

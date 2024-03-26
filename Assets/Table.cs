@@ -3,7 +3,6 @@ public class Table
     public GamePile gamePile = new GamePile();
     public DiscardPile discardPile = new DiscardPile();
     // Add references to other game components, like the draw pile and players' hands
-    public Deck
 
     // Initialize the game, deal cards, etc.
     public void SetupGame()

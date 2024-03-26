@@ -4,10 +4,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public List<Player> players = new List<Player>();
-    private DeckScript deck;
+    public DeckScript deck;
     public GamePile gamePile = new GamePile();
     public DiscardPile discardPile = new DiscardPile();
-    private int currentPlayerIndex = 0;
+    public int currentPlayerIndex = 0;
 
     void Start()
     {
@@ -118,13 +118,13 @@ public class GameManager : MonoBehaviour
         // If both players have the same value card then the player with the lowest suit value starts first
 
         // Hands are already sorted by card value in descending order so we can check each player's lowest value card by checking the highest index in the player's hand
-        if (players[0].hand[hand.length - 1].value > players[1].hand[hand.length - 1].value)
+        if (players[0].hand[players[0].hand.Count - 1].value > players[1].hand[players[1].hand.Count - 1].value)
         {
           currentPlayerIndex = 1;
         }
         else
         {
-          if (players[0].hand[hand.length - 1].suit > players[1].hand[hand.length - 1].suit)
+          if (players[0].hand[players[0].hand.Count - 1].suit > players[1].hand[players[1].hand.Count - 1].suit)
           {
             currentPlayerIndex = 0;
           }

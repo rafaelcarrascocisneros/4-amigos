@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DeckScript : MonoBehaviour
 {
-    private List<Card> deck = new List<Card>();
+    public List<Card> deck = new List<Card>();
 
-    void Start()
+    public void Start()
     {
         CreateDeck();
         ShuffleDeck();
         // You can now deal cards, etc.
     }
 
-    void CreateDeck()
+    public void CreateDeck()
     {
         foreach (Card.Suit suit in System.Enum.GetValues(typeof(Card.Suit)))
         {
@@ -24,14 +24,14 @@ public class DeckScript : MonoBehaviour
         }
     }
 
-    void ShuffleDeck()
+    public void ShuffleDeck()
     {
         // Implement a shuffling algorithm here
         // A simple one is the Fisher-Yates shuffle
     }
 
     // Removes card at a random index from the deck and returns it
-    Card DrawCard(Card card)
+    public Card DrawCard()
     {
         // Draw random card
         int randomIndex = Random.Range(0, deck.Count);
