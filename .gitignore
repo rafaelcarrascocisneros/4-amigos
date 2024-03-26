@@ -1,0 +1,34 @@
+# .gitignore file for Unity projects
+
+# Unity generated files
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ibrary/
+
+# Visual Studio / MonoDevelop / Rider generated files
+[Ee]xported[Oo]bj/
+.vs/
+/*.userprefs
+/*.csproj
+/*.pidb
+/*.suo
+/*.sln*
+/*.user
+/*.unityproj
+/*.booproj
+
+# OS generated files
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db
+
+# Ignore logs
+Logs/
+
+# Ignore user-specific editor settings
+[Uu]nity/[Ee]ditor/[Ee]ditor[Uu]ser[Ss]ettings.asset
