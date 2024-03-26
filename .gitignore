@@ -32,3 +32,6 @@ Logs/
 
 # Ignore user-specific editor settings
 [Uu]nity/[Ee]ditor/[Ee]ditor[Uu]ser[Ss]ettings.asset
+
+# Ignore txt files
+rules.txt
