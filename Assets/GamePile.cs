@@ -5,6 +5,9 @@ public class GamePile
 {
     private List<Card> pile = new List<Card>();
 
+    // Expose the pile field as a public property
+    public List<Card> Cards => pile;
+
     // Adds a card to the pile
     public void AddCard(Card card)
     {
