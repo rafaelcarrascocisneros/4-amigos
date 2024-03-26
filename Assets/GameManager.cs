@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,69 @@ public class GameManager : MonoBehaviour
         Player currentPlayer = players[currentPlayerIndex];
         // Here, you would implement logic for the player to select a card to play.
         // This is simplified; in a real game, you would handle player input to select the card.
+
+        Card card = null; // The card to play
+        int cardIndex = 0; // This will be user input to select a card index
+
+        /* Draw phase */
+
+        // If current player has < 3 cards in their hand and the deck is not empty, draw until you have 3 cards
+        while (currentPlayer.hand.Count < 3 && deck.deck.Count > 0)
+        {
+            currentPlayer.AddCardToHand(deck.DrawCard());
+        }
+
+        /* Player selects card to play */
+
+        // Check if player has no cards in hand
+        if (currentPlayer.hand.Count == 0)
+        {
+            // Check if player has no face-up cards
+            if(currentPlayer.faceUpCards.Count == 0)
+            {
+                // Player has no cards in hand or face-up cards, so they pick from the face-down cards
+                card = currentPlayer.PlayCardFromFaceDown(cardIndex);
+            }
+            else // Player has face-up cards
+            {
+                // Player has no cards in hand, so they pick from their face-up cards
+                card = currentPlayer.PlayCardFromFaceUp(cardIndex);
+            }
+        }
+        else // Player has cards in hand
+        {
+            // Check if player has available moves
+            if (currentPlayer.HasAvailableMoves(gamePile))
+                // Player has cards in hand, so they pick from their hand
+                card = currentPlayer.PlayCardFromHand(cardIndex);
+            else
+                // Player has no available moves, so they take the game pile
+                currentPlayer.AddPileToHand(gamePile);
+        }
+
+        if (card != null)
+        {
+            // Play the card
+            gamePile.AddCard(card);
+
+            // Check for special card effects, if any
+
+            // For example, if the card is a "10", clear the pile
+            if (card.value == Card.Value.Ten)
+            {
+                gamePile.ClearPile();
+            }
+            // If the card is a "2", player can play another card
+            if (card.value == Card.Value.Two)
+            {
+                // Player can play another card
+            }
+            // If player has one or more cards of the same value in their hand they can play all of them at once
+            if (currentPlayer.hand.Any(card => card.value == gamePile.GetTopCard().value))
+            {
+                // Play all cards of the same value
+            }
+        }
 
         // After the player plays a card, manage the turn transition and game state
         // This is also simplified for demonstration purposes

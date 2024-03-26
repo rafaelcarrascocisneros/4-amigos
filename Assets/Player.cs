@@ -73,6 +73,27 @@ public class Player : MonoBehaviour
     {
         faceDownCards.Add(card);
     }
+    
+    // Check player's available moves
+    public bool HasAvailableMoves(GamePile gamePile)
+    {
+        Card topCard = gamePile.GetTopCard();
+        if (topCard != null)
+        {
+            foreach (Card card in hand)
+            {
+                if (card.value >= topCard.value || card.value == Card.Value.Two || card.value == Card.Value.Ten)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return true; // If the game pile is empty, any card can be played
+        }
+    }
 
     // Other functionalities like displaying cards, selecting cards to play, etc., can be added here
 }
